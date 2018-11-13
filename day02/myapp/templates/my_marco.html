@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{#创建数据函数  macro 函数名（参数列表）#}
+{#    {% macro create_data(data) %}#}
+{#        <ul>#}
+{#            {% for i in data %}#}
+{#                    用升序 loop.index,降序用loop.revindex#}
+{#                     <li>第{{ loop.index }}的数据是{{ i }}</li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% endmacro %}#}
+{##}
+{#    调用#}
+{#    {{ create_data(data) }}#}
+{#    {{ create_data(data) }}#}
+
+{#     导入宏定义的数据函数#}
+    {% from "father_macro.html" import first,second %}
+    {{ first(data) }}
+    {{ second(data) }}
+
+    <br>
+    {{ data[0] | upper }}
+    <br>
+    {{ data[1] | lower }}
+    <br>
+    {{ data[0]|capitalize }}
+    <br>
+    {{ data[-1]|title }}
+    <br>
+    {{ data[3] | trim }}
+    <br>
+    {{ data[0] | reverse }}
+    <br>
+    {{ "%s is %s" | format("hahah","xixi") }}
+    <br>
+    {{ "<h1>hahhaah</h1>"| safe }}
+    <br>
+    {{ [3,5,46,21,8] | sum }}
+    <br>
+    {{ [3,5,46,21,8] | length }}
+    <br>
+    {{ [3,5,46,21,8] | sort }}
+
+    
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% macro first(data) %}
+    {% for i in data %}
+        <li>{{ i }}</li>
+        {% else %}
+            <span>没有数据了</span>
+    {% endfor %}
+{% endmacro %}
+
+
+{% macro second(data) %}
+    <span>{{ data }}</span>
+{% endmacro %}
