@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页器</title>
+</head>
+<body>
+    {% for i in data.dogs_data %}
+        <li>{{ i.name }}的地址是{{ i.place }}</li>
+    {% endfor %}
+    <button id="prev">上一页</button>
+    <span>{{ data.current_page }}</span>
+    <button id="next">下一页</button>
+
+</body>
+<script type="text/javascript" src="{{ url_for('static',filename='page.js') }}"></script>
+</html>
