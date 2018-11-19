@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--反向解析的方式添加静态资源-->
+    <!--<link rel="stylesheet" href="{{ url_for('static',filename='hello.css') }}">-->
+    <!--直接添加方式-->
+    <link rel="stylesheet" href="/static/hello.css">
+</head>
+<body>
+    你好，之华！
+    <span>
+        haha
+        <a href="{{ url_for('hello.param',id=2) }}">跳转</a>
+    </span>
+</body>
+</html>

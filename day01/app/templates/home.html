@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    欢迎{{uname}}
+    <a href="{{ url_for('hello.login') }}">登录</a>
+    <a href="{{ url_for('hello.logout') }}">退出</a>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block header %}
+{#    继承父级的信息#}
+    {{ super() }}
+    <h1>招聘启事</h1>
+{% endblock %}
+
+{% block content %}
+{#    继承模板#}
+    {% include "include.html" %}
+{% endblock %}
