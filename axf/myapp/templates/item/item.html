@@ -1,0 +1,125 @@
+{% extends "base/base_main.html" %}
+
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='bg/item/css/item.css') }}">
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+        <tr>
+            <td>商品编号</td>
+            <td>图片</td>
+            <td>名称</td>
+            <td>价格</td>
+            <td>库存</td>
+            <td>操作</td>
+        </tr>
+
+        {% for i in goods %}
+            <tr>
+                <td id="p_id">{{ i.productid }}</td>
+                <td><img src="{{ i.productimg }}" style="width: 60px;height: 60px"></td>
+                <td>{{ i.productlongname }}</td>
+                <td>{{ i.price }}</td>
+                <td>{{ i.storenums }}</td>
+                <td>
+                    <button class="btn btn-info">修改</button>
+                    <br>
+                    <button p_id= "{{ i.id }}" class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{#用来显示所有商品还是筛选数据的分页#}
+    {% if show %}
+        <nav aria-label="Page navigation" class="paginates">
+        <ul class="pagination">
+            <li>
+                {% if pagination.has_prev %}
+                    <a href="{{ url_for('axf.item_view') }}?page={{ pagination.prev_num }}&per=10" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    {% else %}
+                        <a href="{{ url_for('axf.item_view') }}?page=1&per=10" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                {% endif %}
+            </li>
+
+{#                页码#}
+            {% for page in pagination.iter_pages() %}
+{#                显示高亮#}
+                {% if page %}
+                    {% if page!=pagination.page %}
+                        <li><a href="{{ url_for('axf.item_view') }}?page={{ page }}&per=10">{{ page }}</a></li>
+                        {% else %}
+                            <li class="active"><a href="{{ url_for('axf.item_view') }}?page={{ page }}&per=10">{{ page }}<span class="sr-only">(current)</span></a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+
+            <li>
+                {% if pagination.has_next %}
+                    <a href="{{ url_for('axf.item_view') }}?page={{ pagination.next_num }}&per=10" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    {% else %}
+                        <a href="{{ url_for('axf.item_view') }}?page={{ pagination.pages }}&per=10" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+        {% else %}
+            <nav aria-label="Page navigation" class="paginates">
+        <ul class="pagination">
+            <li>
+                {% if pagination.has_prev %}
+                    <a href="{{ url_for('axf.item_search') }}?page={{ pagination.prev_num }}&per=10&good_name={{ good_name }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    {% else %}
+                        <a href="{{ url_for('axf.item_search') }}?page=1&per=10&good_name={{ good_name }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                {% endif %}
+            </li>
+
+{#                页码#}
+            {% for page in pagination.iter_pages() %}
+{#                显示高亮#}
+                {% if page %}
+                    {% if page!=pagination.page %}
+                        <li><a href="{{ url_for('axf.item_search') }}?page={{ page }}&per=10&good_name={{ good_name }}">{{ page }}</a></li>
+                        {% else %}
+                            <li class="active"><a href="{{ url_for('axf.item_search') }}?page={{ page }}&per=10&good_name={{ good_name }}">{{ page }}<span class="sr-only">(current)</span></a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+
+            <li>
+                {% if pagination.has_next %}
+                    <a href="{{ url_for('axf.item_search') }}?page={{ pagination.next_num }}&per=10&good_name={{ good_name }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    {% else %}
+                        <a href="{{ url_for('axf.item_search') }}?page={{ pagination.pages }}&per=10&good_name={{ good_name }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+    {% endif %}
+
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url_for('static',filename='bg/item/js/updates.js') }}"></script>
+{% endblock %}

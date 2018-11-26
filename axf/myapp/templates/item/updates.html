@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+
+{% block header %}
+    <h1 style="text-align: center;color: red">商品修改表</h1>
+{% endblock %}
+
+
+{% block content %}
+    <form action="/good_updates/{{ good.id }}">
+        <table class="table table-bordered">
+            <tr>
+                <td>字段名</td>
+                <td>原始</td>
+                <td>修改</td>
+            </tr>
+            <tr>
+                <td>商品编号</td>
+                <td>{{ good.productid }}</td>
+                <td><input type="text" name="product_id"></td>
+            </tr>
+            <tr>
+                <td>图片</td>
+                <td>{{ good.productimg }}</td>
+                <td><input type="text" name="product_img"></td>
+            </tr>
+            <tr>
+                <td>名称</td>
+                <td>{{ good.productlongname }}</td>
+                <td><input type="text" name="product_longname"></td>
+            </tr>
+            <tr>
+                <td>价格</td>
+                <td>{{ good.price }}</td>
+                <td><input type="text" name="product_price"></td>
+            </tr>
+            <tr>
+                <td>库存</td>
+                <td>{{ good.storenums }}</td>
+                <td><input type="text" name="product_storenums"></td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-info">确认修改</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base/base_main.html" %}
+
+{% block js %}
+    {{ super() }}
+{#    清空所有的li的active class#}
+    <script>
+        $("li").removeClass("active");
+        $("#auto_li").addClass("active");
+    </script>
+
+    <table class="table">
+        <tr>
+            <td>商品id</td>
+            <td>商品名称</td>
+            <td>商品库存</td>
+            <td>补货数量</td>
+        </tr>
+        {% for i in goods %}
+            <tr>
+                <td>{{ i.productid }}</td>
+                <td>{{ i.productlongname }}</td>
+                <td>{{ i.storenums }}</td>
+                <td>{{ i.bh_num }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}
